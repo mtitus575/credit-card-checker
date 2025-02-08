@@ -24,6 +24,61 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+    // This function checks the card validity.
+const validateCred = (arr) => {
+    
+    let credCard = arr.slice(0, -1);    /*  This variable stores a shallow copy of the original array (card number) without changing the original card array.
+                                            It also removes the last digit from the array (the check digit) */
+    let reversedCard = credCard.toReversed(); // This variable stores the reversed array (without mutating the array)
+    let originalCard = arr.toReversed(); //Stores the original card in reverse order. I will pull the first digit from here to add to the mutated array to sum all the digits.
+    let evenNum;
+    let unevenNum;
+    
+    for (let i = 0; i < reversedCard.length; i++) {
+        if (i % 2 == 0) {
+            evenNum = reversedCard[i];
+            //console.log(evenNum);
+            evenNum = evenNum*2;
+            //console.log(evenNum);
+
+        if (evenNum > 9) {
+            evenNum-=9;
+        }
+        console.log(evenNum);
+        }
+    };
+    //console.log(evenNum);
+
+    for (let i = 0; i < reversedCard.length; i++) {
+        if (i % 2 == 1) {
+            unevenNum = reversedCard[i];
+            //console.log(unevenNum);
+        }
+    };
+
+    //summing up:
+    //Summing the values inside the arrays:
+    //console.log(evenNum);
+//    const evenNumSum = evenNum.reduce(
+//     (accumulator, currentValue) => accumulator + currentValue, 0
+//    );
+//    console.log(evenNumSum);
+    
+
+// adds all the variables together.
+    let totalSum = evenNum + unevenNum + originalCard[0];
+    //console.log(totalSum);
+    
+    //final step: checks modulo for true if 0
+    if (totalSum % 10 === 0) {
+        return true
+    } else {
+        return false
+    }
+
+};
+
+console.log(validateCred(valid1));
 
 
 
