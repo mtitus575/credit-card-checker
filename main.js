@@ -39,37 +39,31 @@ const validateCred = (arr) => {
     for (let i = 0; i < reversedCard.length; i++) { //iterates over the reversed array
         if (i % 2 == 0) { // Extracts the alternate numbers into a new variable.
             evenNum = reversedCard[i]; //assigns the array with alternate numbers to the "evenNum" variable
-            //console.log(evenNum);
             evenNum = evenNum*2; //Doubles the alternate numbers
-            //console.log(evenNum);
-
-        if (evenNum > 9) { // removes 9 from each value if they are more than 9 after doubling.
-            evenNum-=9;
+            
+                if (evenNum > 9) { // removes 9 from each value if they are more than 9 after doubling.
+                    evenNum-=9;
+                } break;
+                //console.log(evenNum);
         }
-        }
-        //console.log(evenNum);
-// Add total of the evenNum array here:
+        // Add total of the evenNum array here:
+            
     };
-    //console.log(evenNum);
 
-    for (let i = 0; i < reversedCard.length; i++) {
+    for (let i = 0; i < reversedCard.length; i++) { //This is the array for the uneven list of numbers
         if (i % 2 == 1) {
             unevenNum = reversedCard[i];
-            //console.log(unevenNum);
-        }
-    };
+           //console.log(unevenNum);
+       }
+   };
+
 
 //summing up:
 //Summing the values inside the arrays:
    
 
-   
-    
-
-
-
 // adds ALL the totals in the variables together.
-    let totalSum = evenNum + unevenNum + originalCard[0];
+    const totalSum = evenNum + unevenNum + originalCard[0];
     //The above variable names might change but the formula is correct. The last variable should stay the same
     console.log(totalSum);
     
@@ -79,7 +73,6 @@ const validateCred = (arr) => {
     } else {
         return false
     }
-    
 };
 
 console.log(validateCred(valid1));
