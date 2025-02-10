@@ -40,7 +40,7 @@ const validateCred = (arr) => {
         if (i % 2 == 0) { // Extracts the alternate numbers into a new variable.
             evenNum = reversedCard[i]; //assigns the array with alternate numbers to the "evenNum" variable
             evenNum = evenNum*2; //Doubles the alternate numbers
-            
+        
                 if (evenNum > 9) { // removes 9 from each value if they are more than 9 after doubling.
                     evenNum-=9;
                 } break;
@@ -65,7 +65,7 @@ const validateCred = (arr) => {
 // adds ALL the totals in the variables together.
     const totalSum = evenNum + unevenNum + originalCard[0];
     //The above variable names might change but the formula is correct. The last variable should stay the same
-    console.log(totalSum);
+    //console.log(totalSum);
     
 //final step: checks modulo for true if 0. This is correct.
     if (totalSum % 10 === 0) {
