@@ -26,7 +26,32 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 // Add your functions below:
 const validateCred = arr => {
     let checkArray = arr.slice(); //creates a shallow copy of the array to be checked.
-    console.log(checkArray)
+    // console.log(checkArray) //was used to check the above - delete tomorrow
+    let doubledNums = [];
+    let notDoubled = [];
+    let checkDigit = checkArray.slice(-1)
+    console.log(checkDigit)
+    let sumOfNums = []; //to store both doubled and non doubled nums and then sum them
 
+    for(let i=checkArray.length-2; i >= 0; i -=2) { //Loops through every 2nd element, starting with the one before the check digit
+        checkArray[i]*=2 //Doubled each of the alternate elements
+
+        if(checkArray[i] > 9) { 
+            doubledNums.push(checkArray[i]-9) //subtracts 9 from each element that is bigger than 9 after doubling. It then pushes that result into the holding array
+        } else {
+            doubledNums.push(checkArray[i]) // pushes numbers that are less than 9 directly into the holding array
+        }
+    } //return doubledNums //not needed here. only one return can be used 
+
+    for(let j = checkArray.length-3; j>=0; j-=2) { //loops through every other element starting at the 3rd from rear element
+        notDoubled.push(checkArray[j]) //pushes the elements into this holding array
+    } //return notDoubled //not needed here. only one return can be used 
+    
+    return sumOfNums = doubledNums.concat(notDoubled).concat(checkDigit) 
+    /*The above code and return gives an array of the numbers that are doubled, have 9 substracted and adds the 
+    check digit.
+    You need to now find the sum of this array and use remainder/modulo for last step */
+    
 };
-validateCred(valid1)
+console.log(validateCred(valid1))
+// console.log(valid1)
