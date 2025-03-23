@@ -24,3 +24,9 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+const validateCred = arr => {
+    let checkArray = arr.slice(); //creates a shallow copy of the array to be checked.
+    console.log(checkArray)
+
+};
+validateCred(valid1)
