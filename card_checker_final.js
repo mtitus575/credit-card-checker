@@ -110,9 +110,19 @@ const idInvalidCardCompanies = nestedArr => {
     const removedDuplicates = companies.filter(function(item, index, arr){
         return arr.indexOf(item) === index
     });
-    
+
     return removedDuplicates;
     
 };
-console.log(idInvalidCardCompanies(invalidCardsArray));
-// idInvalidCardCompanies(invalidCardsArray)
+console.log(idInvalidCardCompanies(invalidCardsArray)); // calls and logs the function to console
+// idInvalidCardCompanies(invalidCardsArray) //calls the function without logging
+
+
+// The below code will take any string input and convert it to a valid array of numbers for the validating process.
+const convertToArray = string => {
+    return string.split('').map(Number)
+};
+
+let numString = '12345678999' //This variable was used to test the conversion function.
+
+// console.log(convertToArray(numString)) //calls the conversion function.
