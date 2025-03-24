@@ -51,18 +51,30 @@ const validateCred = arr => {
 
     //This if statement will return a result based on the summed value modulo by 10.
     if (sumOfNums % 10 === 0) {
-        return 'Congrats, the card is valid!';
+        return true; //true here means the card is valid
     } else {
-        return 'Enter a valid card number.';
+        return false; //false here means the card is invalid
         }
-    
 };
-validateCred(valid1); //This is the function call.
-console.log(validateCred(valid1)); //Allows me to see what the function does in the console.
+// validateCred(valid1); //This is the function call.
+// console.log(validateCred(valid1)); //Allows me to see what the function does in the console.
 
 
 //Instruction 3:
+const invalidArrays = []; //this array will store the invalid arrays. Placed in global scope - allows other functions to also access this variable.
+
+//this function returns a nested array of invalid numbers.
 const findInvalidCards = nestedArr => {
-    
+    //let invalidArrays = []; //this array will store the invalid arrays
+
+    for(let x = 0; x < nestedArr.length; x++) { //loops through the nested arrays
+        if(validateCred(nestedArr[x]) === false) { //calls the function that validates the cards and checks if it returns false
+            invalidArrays.push(nestedArr[x]); //pushes the arrays that evaluates to false into the variable to hold nested arrays of incorrect cards
+        } 
+    } 
+    return invalidArrays // returns the array or arrays. Notice the location of the return. It is scoped after the for loop to return all of the iterations.
 };
+// console.log(findInvalidCards(batch))
+findInvalidCards(batch)
+console.log(invalidArrays)
 
