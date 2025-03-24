@@ -85,27 +85,34 @@ findInvalidCards(batch) //calls the function above.
 //Instruction 4:
 const idInvalidCardCompanies = nestedArr => {
     let inValidCardCompanies = [];
+    let companies = [];
 
     nestedArr.forEach(function(num) {
         inValidCardCompanies.push(num[0]); //pushes each of the first elements within the nested array into the variable - making a new array of only the first numbers of the invalid cards
             // console.log(num[0])
-        });
+    });
     // return inValidCardCompanies // this return should not be here as it will stop the rest of the code from runnnig- used to check the function at this point only
     
-    for (let a = 0; a < inValidCardCompanies.length; a++) {
-        switch (a) {
-            case 3: return 'Amex';
+    inValidCardCompanies.forEach(function(digit){
+        switch (digit) {
+            case 3: companies.push('Amex');
             break;
-            case 4: return 'Visa';
+            case 4: companies.push('Visa');
             break;
-            case 5: return 'MasterCard';
+            case 5: companies.push('MasterCard');
             break;
-            case 6: return 'Discover';
+            case 6: companies.push('Discover');
             default: 'Company not found'
         }
-    }
+    });
+    // return companies; // this return should not be here as it will stop the rest of the code from runnnig- used to check the function at this point only
 
-
+    const removedDuplicates = companies.filter(function(item, index, arr){
+        return arr.indexOf(item) === index
+    });
+    
+    return removedDuplicates;
+    
 };
 console.log(idInvalidCardCompanies(invalidCardsArray));
 // idInvalidCardCompanies(invalidCardsArray)
