@@ -6,6 +6,7 @@ const valid4 = [6, 0, 1, 1, 1, 4, 4, 3, 4, 0, 6, 8, 2, 9, 0, 5];
 const valid5 = [4, 5, 3, 9, 4, 0, 4, 9, 6, 7, 8, 6, 9, 6, 6, 6];
 
 // All invalid credit card numbers
+const testInvalidLength = [3, 4, 5, 9]
 const invalid1 = [4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5];
 const invalid2 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3];
 const invalid3 = [3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4];
@@ -32,6 +33,10 @@ const validateCred = arr => {
     const checkDigit = checkArray.slice(-1); //holds the check digit. This number is not doubled in the luhn algorithm
     let finalArray = []; //to store both doubled and non doubled nums and then sum them
 
+    // This step checks the length of the card first. If the length is invalid, it returns false.
+    if (arr.length < 13 || arr.length > 19) return false; // Check for typical credit card length
+
+
     for(let i=checkArray.length-2; i >= 0; i -=2) { //Loops through every 2nd element, starting with the one before the check digit
         checkArray[i]*=2; //Doubled each of the alternate elements
 
@@ -56,9 +61,10 @@ const validateCred = arr => {
         return false; //false here means the card is invalid
         }
 };
-// validateCred(valid1); //This is the function call.
-// console.log(validateCred(valid1)); //Allows me to see what the function does in the console.
-
+//This is the function call:
+    // validateCred(valid1);
+//Allows me to see what the function does in the console.
+    //console.log(validateCred(testInvalidLength)); 
 
 //Instruction 3:
 const invalidCardsArray = []; //this array will store the invalid arrays. Placed in global scope - allows other functions to also access this variable.
@@ -77,7 +83,6 @@ const findInvalidCards = nestedArr => {
     return invalidCardsArray
  // returns the array or arrays. Notice the location of the return. It is scoped after the for loop to return all of the iterations.
 };
-// console.log(findInvalidCards(batch))
 findInvalidCards(batch) //calls the function above.
 // console.log(invalidCardsArray) // checks to ensure the global variable that holds the nested arrays are correct.
 
