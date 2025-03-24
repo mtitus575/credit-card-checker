@@ -1,5 +1,5 @@
 // All valid credit card numbers
-const valid1 = [4, 5, 3, 9, 6, 7, 7, 9, 0, 8, 0, 1, 6, 8, 0, 8];
+const valid1 = [4, 5, 3, 9, 6, 7, 7, 9, 0, 8, 0, 1, 6, 8, 0, 8,];
 const valid2 = [5, 5, 3, 5, 7, 6, 6, 7, 6, 8, 7, 5, 1, 4, 3, 9];
 const valid3 = [3, 7, 1, 6, 1, 2, 0, 1, 9, 9, 8, 5, 2, 3, 6];
 const valid4 = [6, 0, 1, 1, 1, 4, 4, 3, 4, 0, 6, 8, 2, 9, 0, 5];
@@ -25,13 +25,11 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 const validateCred = arr => {
-    let checkArray = arr.slice(); //creates a shallow copy of the array to be checked.
-    // console.log(checkArray) //was used to check the above - delete tomorrow
-    let doubledNums = [];
-    let notDoubled = [];
-    let checkDigit = checkArray.slice(-1)
-    console.log(checkDigit)
-    let sumOfNums = []; //to store both doubled and non doubled nums and then sum them
+    const checkArray = arr.slice(); //creates a shallow copy of the array to be checked. This step prevents mutating the original
+    let doubledNums = []; //will hold numbers to be doubled
+    let notDoubled = []; //holds the rest of the numbers that are not douubled
+    const checkDigit = checkArray.slice(-1) //holds the check digit. This number is not doubled in the luhn algorithm
+    let finalArray = []; //to store both doubled and non doubled nums and then sum them
 
     for(let i=checkArray.length-2; i >= 0; i -=2) { //Loops through every 2nd element, starting with the one before the check digit
         checkArray[i]*=2 //Doubled each of the alternate elements
@@ -47,11 +45,16 @@ const validateCred = arr => {
         notDoubled.push(checkArray[j]) //pushes the elements into this holding array
     } //return notDoubled //not needed here. only one return can be used 
     
-    return sumOfNums = doubledNums.concat(notDoubled).concat(checkDigit) 
-    /*The above code and return gives an array of the numbers that are doubled, have 9 substracted and adds the 
-    check digit.
-    You need to now find the sum of this array and use remainder/modulo for last step */
+    finalArray = doubledNums.concat(notDoubled).concat(checkDigit); //This step takes all the part of the array that was worked with above and concatenates it into the final array
+    const sumOfNums = finalArray.reduce((accumulator, currentValue) => accumulator + currentValue) // Sums the array up and assigns the result to a new variable
+
+    //This if statement will return a result based on the summed value modulo by 10.
+    if (sumOfNums % 10 === 0) {
+        return 'Congrats, the card is valid!';
+    } else {
+        return 'Enter a valid card number.'
+        }
     
 };
-console.log(validateCred(valid1))
+console.log(validateCred(mystery2))
 // console.log(valid1)
